@@ -3,26 +3,33 @@ package test
 import (
 	"testing"
 	"triangletest/geometry"
+	. "github.com/smartystreets/goconvey/convey"
+	"fmt"
 )
 
 func TestTriangleIsScalene(t *testing.T) {
 
 	a,b,c := 11,10,12
-	triangleType := geometry.Scalene
 
-	t.Logf("Subject: Triangle is scalene")
+	Convey("Scenario 3: no equal length sides should return scalene triangle type",t, func() {
 
-	t.Logf("Given a valid triangle")
+		Convey(fmt.Sprintf("Given lengths a = %v, b = %v , c = %v",a,b,c),func() {
 
-	tr,err := geometry.NewTriangle(a,b,c)
-	PanicOnError(err)
+			Convey("And should form a valid triangle",func() {
 
-	t.Logf("Then the triangle type should be %v",triangleType)
-	if !tr.IsTriangleScalene() {
-		t.Fatalf("Expected triangle type to be %v but instead was %v",triangleType,tr.GetTriangleType())
-	}
+				tr,err := geometry.NewTriangle(a,b,c)
 
-	t.Logf("Test successfull")
+				So(err,ShouldBeNil)
+
+				Convey("When a,b and c are not equal", func() {
+
+					Convey("Then the triangle type should be scalene",func() {
+						So(tr.IsTriangleScalene(),ShouldBeTrue)
+					})
+				})
+			})
+		})
+	})
 }
 
 

@@ -63,6 +63,7 @@ set GOPATH=/workspace
 We are now ready to compile the application
 
 ````bash
+go get -v -t
 go build
 ````
 

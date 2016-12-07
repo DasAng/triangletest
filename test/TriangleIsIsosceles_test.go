@@ -3,26 +3,33 @@ package test
 import (
 	"testing"
 	"triangletest/geometry"
+	"fmt"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestTriangleIsIsosceles(t *testing.T) {
 
 	a,b,c := 11,11,10
-	triangleType := geometry.Isosceles
 
-	t.Logf("Subject: Triangle is isosceles")
+	Convey("Scenario 1: 2 equal length sides should return isosceles triangle type",t, func() {
 
-	t.Logf("Given a valid triangle")
+		Convey(fmt.Sprintf("Given lengths a = %v, b = %v , c = %v",a,b,c),func() {
 
-	tr,err := geometry.NewTriangle(a,b,c)
-	PanicOnError(err)
+			Convey("And should form a valid triangle",func() {
 
-	t.Logf("Then the triangle type should be %v",triangleType)
-	if !tr.IsTriangleIsosceles() {
-		t.Fatalf("Expected triangle type to be %v but instead was %v",triangleType,tr.GetTriangleType())
-	}
+				tr,err := geometry.NewTriangle(a,b,c)
 
-	t.Logf("Test successfull")
+				So(err,ShouldBeNil)
+
+				Convey("When a and b are equal", func() {
+
+					Convey("Then the triangle type should be isosceles",func() {
+						So(tr.IsTriangleIsosceles(),ShouldBeTrue)
+					})
+				})
+			})
+		})
+	})
 }
 
 

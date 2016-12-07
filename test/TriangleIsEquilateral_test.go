@@ -3,26 +3,32 @@ package test
 import (
 	"testing"
 	"triangletest/geometry"
+	"fmt"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestTriangleIsEquilateral(t *testing.T) {
 
 	a,b,c := 11,11,11
-	triangleType := geometry.Equilateral
+	Convey("Scenario 1: 3 equal length sides should return equilateral triangle type",t, func() {
 
-	t.Logf("Subject: Triangle is equilateral")
+		Convey(fmt.Sprintf("Given lengths a = %v, b = %v , c = %v",a,b,c),func() {
 
-	t.Logf("Given a valid triangle")
+			Convey("And should form a valid triangle",func() {
 
-	tr,err := geometry.NewTriangle(a,b,c)
-	PanicOnError(err)
+				tr,err := geometry.NewTriangle(a,b,c)
 
-	t.Logf("Then the triangle type should be %v",triangleType)
-	if !tr.IsTriangleEquilateral() {
-		t.Fatalf("Expected triangle type to be %v but instead was %v",triangleType,tr.GetTriangleType())
-	}
+				So(err,ShouldBeNil)
 
-	t.Logf("Test successfull")
+				Convey("When a,b,c are all equal", func() {
+
+					Convey("Then the triangle type should be equilateral",func() {
+						So(tr.IsTriangleEquilateral(),ShouldBeTrue)
+					})
+				})
+			})
+		})
+	})
 }
 
 
