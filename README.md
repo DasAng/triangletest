@@ -28,13 +28,13 @@ To run the application type this in a terminal
  
  The program will then display the result.
  
- # BUILD FROM SOURCE #
+# BUILD FROM SOURCE #
  
  In order to build the program from source you will need to have *Go* installed:
  
  Visit https://golang.org/dl/ and download the appropriate binary for your platform
  
- ### Compile the source ###
+### Compile the source ###
  
  Before compiling your application make sure you have set up the project structure correctly. 
  Create a directory, eg. lets called it workspace/src
