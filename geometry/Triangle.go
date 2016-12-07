@@ -104,11 +104,6 @@ func (m *triangle) IsTriangleScalene() bool {
 	return m.triangleType == Scalene
 }
 
-// GetAllSides returns all the sides of the triangle as an array
-func (m *triangle) GetAllSides() ([]int) {
-	return []int{m.a,m.b,m.c}
-}
-
 // GetTriangleType returns an enumeration value where:
 // Equilateral = 0, Isosceles = 1, Scalene = 2
 func (m *triangle) GetTriangleType() int {
